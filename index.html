@@ -1,0 +1,73 @@
+<html><head>
+	<title>Music</title>
+         <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
+</head>
+<body>
+
+    <h1 >Rock, Paper, Scissors</h1>
+    
+    <h3 style='position: relative;top: 3%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);vertical-align: middle; background: url(assets/media/r.png);background-size: 100% 100%;padding: 10px;width: 100px;height: 50px;' id="rockButton"></h3><br>
+    
+    <h3 style='position: relative;top: 3%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);vertical-align: middle; background: url(assets/media/p.png);background-size: 100% 100%;padding: 10px;width: 100px;height: 50px;' id="paperButton"></h3><br>
+    
+    <h3 style='position: relative;top: 3%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);vertical-align: middle;background: url(assets/media/s.png);background-size: 100% 100%;padding: 10px;width: 100px;height: 50px;' id="scissorsButton"><p></p></h3>
+    
+    <h2 id="yourChoice">Please choose Rock Paper or Scissors</h2><h2 id="compChoice"></h2>    
+    <h2 id="outcome"></h2>
+    
+    <img id="winloseAnim" style="height:344px">
+    
+    <form><button formaction="index.html">Reset</button></form>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    
+<script>
+  document.getElementById("paperButton").onclick = function() {choosePaper()};
+  function choosePaper() {
+      playgame(1);                   
+      document.getElementById("yourChoice").innerHTML = "You picked Paper";
+                         }
+    
+  document.getElementById("rockButton").onclick = function() {chooseRock()};
+  function chooseRock() {
+    playgame(0);
+    document.getElementById("yourChoice").innerHTML = "You picked Rock";
+                        }
+    
+  document.getElementById("scissorsButton").onclick = function() {chooseScissors()};
+  function chooseScissors() {
+      playgame(2);
+      document.getElementById("yourChoice").innerHTML = "You picked Scissors";
+  }                         
+        
+  function playgame(player){
+      var win = 0; //tie is 0 win is 1 lose is 2
+      var comp = Math.floor(Math.random() * 3);
+      switch(comp) {
+          case 0:
+              document.getElementById("compChoice").innerHTML = "The computer picked Rock";
+              break;
+          case 1:
+              document.getElementById("compChoice").innerHTML = "The computer picked Paper";
+              break;
+          case 2:
+              document.getElementById("compChoice").innerHTML = "The computer picked Scissors";
+              break;
+          default:}
+      
+      if (player == comp){document.getElementById("outcome").innerHTML = "Tie<br>";$("#winloseAnim").attr('src',"assets/media/none.png");return 0;}
+      else if (player == 0 && comp == 1){document.getElementById("outcome").innerHTML = "You LOSE, rock loses to paper<br>"; $("#winloseAnim").attr('src',"assets/media/r-p.gif");return 2;}
+      else if (player == 0 && comp == 2){document.getElementById("outcome").innerHTML = "You WIN, rock beats siccors<br>"; $("#winloseAnim").attr('src',"assets/media/r-s.gif");return 1;}
+      else if (player == 1 && comp == 0){document.getElementById("outcome").innerHTML = "You WIN, paper beats rock<br>";
+                                    $("#winloseAnim").attr('src',"assets/media/p-r.gif");return 1;}
+      else if (player == 1 && comp == 2){document.getElementById("outcome").innerHTML = "You LOSE, paper loses to scissors<br>";
+                                    $("#winloseAnim").attr('src',"assets/media/p-r.gif");return 2;}
+      else if (player == 2 && comp == 0){document.getElementById("outcome").innerHTML = "You LOSE, siccors loses to rock<br>";
+                                    $("#winloseAnim").attr('src',"assets/media/s-r.gif");return 2;}
+      else if (player == 2 && comp == 1){document.getElementById("outcome").innerHTML = "You WIN, scissors beats paper<br>";
+                                    $("#winloseAnim").attr('src',"assets/media/s-p.gif");return 1;}
+  }
+</script>
+
+
+</body></html>
